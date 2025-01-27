@@ -22,7 +22,9 @@ jobs:
         run: npm run lint
 
       - name: Check code format
-        run: npm run prettier
+        run: |
+          npm install prettier
+          npm run prettier
 
       - name: Run NPM tests
         env:
