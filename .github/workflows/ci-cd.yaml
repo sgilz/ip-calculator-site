@@ -80,5 +80,5 @@ jobs:
           path: build
 
       - name: Sync s3 files
-        run: aws s3 sync build s3://${{ step.output.outputs.s3_bucket }}
+        run: aws s3 sync build s3://${{ steps.output.outputs.s3_bucket }}
 
