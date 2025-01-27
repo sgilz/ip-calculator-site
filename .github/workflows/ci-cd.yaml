@@ -10,7 +10,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Set up node 
+      - name: Set up node
         uses: actions/setup-node@v4
         with:
           node-version: 15
