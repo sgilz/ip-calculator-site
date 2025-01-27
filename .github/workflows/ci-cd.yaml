@@ -1,0 +1,42 @@
+name: CI/CD pipeline
+
+on:
+  pull_request:
+
+jobs:
+  ci-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 15
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Check code format
+        run: |
+          npm install prettier
+          npm run prettier
+
+      - name: Run NPM tests
+        env:
+          CI: "true"
+        run: npm run test
+
+      - name: Build artifact
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build
+          overwrite: true
